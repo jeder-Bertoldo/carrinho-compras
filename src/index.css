@@ -5,3 +5,10 @@
   box-sizing: border-box;
   font-family: 'Poppins', sans-serif;
 }
+body{
+  background-color: white;
+}
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+}
