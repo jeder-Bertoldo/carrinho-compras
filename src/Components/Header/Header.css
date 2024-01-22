@@ -2,6 +2,7 @@
   background-color: bisque;
 position: fixed;
 width: 100%;
+z-index: 1;
 }
 header > div {
   display: flex;
