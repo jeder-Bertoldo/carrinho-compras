@@ -11,7 +11,7 @@ function Products() {
     
     fetchProducts('iphone').then((Response)=> {
       setProducts(Response);
-      console.log(products);
+
     });
 
   }, []);
@@ -19,10 +19,11 @@ function Products() {
   return (
     <section className="products container">
       {
-        <ProductCard/>
+        products.map((product) => <ProductCard key={product.id} data={product}/>) 
       }
     </section>
   );
 }
 
 export default Products;
+
