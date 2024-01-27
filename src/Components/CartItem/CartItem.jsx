@@ -1,17 +1,31 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import propTypes from 'prop-types';
 import { BsCartDashFill } from 'react-icons/bs';
 import './CartItem.css';
+import formatCurrancy from '../../utils/formatCurrency';
+import AppContext from '../../context/AppContext';
 
-function CartItem(){
+function CartItem({data}){
+
+  const {cartItems, setCartItems} = useContext(AppContext);
+  const {id, thumbnail, title, price, } = data;
+
+  const handleRemoveItem = () => {
+    const updateItems = cartItems.filter((item) => item.id != id);
+    setCartItems(updateItems);
+  };
+
   return(
     <section className="cart-item">
-      <img src=""  alt="imagem do produto" 
+      <img src={thumbnail}  alt="imagem do produto" 
         className="cart-item-image"
       />
       <div className="cart-item-content">
-        <h3 className="cart-item-title">Titulo do Produto</h3>
-        <h3 className="cart-item-price"> R$ 123,00</h3>
-        <button type="button" className="button-remove-item">
+        <h3 className="cart-item-title">{title}</h3>
+        <h3 className="cart-item-price"> {formatCurrancy(price, 'BRL')}</h3>
+        <button type="button" 
+          className="button-remove-item"
+          onClick={handleRemoveItem}>
           <BsCartDashFill/>
         </button>
       </div>
@@ -20,3 +34,6 @@ function CartItem(){
   );
 }
 export default CartItem;
+
+CartItem.propTypes = {
+  data: propTypes.object.isRequired};
